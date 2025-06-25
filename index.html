@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atestado Digital | Acesso Restrito</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #8A2BE2;
+            color: #333;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            width: 100%;
+            flex-direction: column;
+            padding-bottom: 60px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+            width: 100%;
+        }
+
+        header {
+            background-color: #e0f2f7;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header .doctor-info {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        header h1 {
+            font-size: 1.8em;
+            color: #333;
+            margin: 0;
+        }
+
+        header h2 {
+            font-size: 1.4em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .code-section {
+            background-color: #cce9f2;
+            padding: 10px;
+            margin-top: 15px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .code-section strong {
+            color: #007bff;
+        }
+
+        .buttons-section {
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 20px;
+            background-color: #e0f2f7;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        .buttons-section button,
+        .buttons-section .button-download {
+            padding: 10px 15px;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #007bff;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s, color 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            flex-grow: 1;
+            margin: 0 5px;
+        }
+
+        .buttons-section button:hover,
+        .buttons-section .button-download:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        main h3 {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .atestado-item {
+            border: 1px solid #eee;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .atestado-item h4 {
+            margin: 0 0 10px 0;
+            color: #007bff;
+        }
+
+        .atestado-item p {
+            line-height: 1.6;
+            color: #444;
+        }
+
+        .atestado-item p strong {
+            font-weight: bold;
+        }
+
+        .atestado-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .footer-section {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-top: 1px solid #eee;
+            text-align: center;
+        }
+
+        .footer-section h4 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .footer-section p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .footer-section a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            text-decoration: underline;
+        }
+
+        nav.bottom-nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #333;
+            padding: 10px 0;
+            position: sticky;
+            bottom: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        nav.bottom-nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav.bottom-nav a:hover,
+        nav.bottom-nav a.active {
+            background-color: #555;
+        }
+
+        .login-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .login-container h1 {
+            color: #007bff;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .input-group input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-button:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .qr-code-section {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px dashed #ddd;
+        }
+
+        .qr-code-section img {
+            width: 150px;
+            height: 150px;
+            border: 1px solid #eee;
+            border-radius: 4px;
+        }
+
+        .qr-code-section p {
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 620px) {
+            .container,
+            .login-container {
+                margin: 10px;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div id="login-section" class="login-container">
+            <h1>Acesso ao Atestado Digital</h1>
+            <div class="input-group">
+                <label for="token">Token da Farmácia:</label>
+                <input type="text" id="token" name="token" required>
+            </div>
+            <div class="input-group">
+                <label for="unlock_code">Código de Desbloqueio:</label>
+                <input type="password" id="unlock_code" name="unlock_code" required>
+            </div>
+            <button type="submit" class="login-button" onclick="checkLogin()">Entrar</button>
+            <p class="error-message" id="error_msg">Token ou código de desbloqueio incorretos.</p>
+
+            <div class="qr-code-section">
+                <img src="qrcode_atestado.png" alt="QR Code para o Atestado Digital">
+                <p>Escaneie o código para acessar esta página.</p>
+            </div>
+        </div>
+
+        <div id="atestado-section" class="container" style="display: none;">
+            <header>
+                <div class="doctor-info">Atestado emitido por</div>
+                <h1>Dr. GABRIEL PRATES</h1>
+                <h2>CRM: 56023</h2>
+                <div class="code-section">
+                    Código do Atestado: <strong>ATST-2025-001</strong>
+                </div>
+                <div class="buttons-section">
+                    <button>Ver Detalhes</button>
+                    <a href="atestado_breno.pdf" download="atestado_breno.pdf" class="button-download">Baixar Atestado (PDF)</a>
+                </div>
+            </header>
+
+            <main>
+                <h3>Itens do seu Atestado</h3>
+                <div class="atestado-item">
+                    <h4>ATESTADO MÉDICO</h4>
+                    <p>
+                        Atesto para os devidos fins, que <strong>BRENO FRANCISCO ARAUJO CARDOSO</strong>, nascido(a) em: <strong>26/09/2002</strong>,
+                        portador(a) do CPF: <strong>010.392.312-84</strong>, e RG: <strong>7378723</strong>, necessita de <strong>1 (um) dia de afastamento</strong>
+                        do trabalho por motivos de doença.
+                        <br><br>
+                        CID: <strong>10</strong>
+                        <br><br>
+                        Data e hora: <strong>28/06/2025 - 10:37</strong>
+                        <br><br>
+                        <strong>Dr. GABRIEL PRATES</strong><br>
+                        CRM: 56023
+                    </p>
+                    <div class="atestado-details">
+                        <div>
+                            <p>Quantidade</p>
+                            <strong>1</strong>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <div class="footer-section">
+                <h4>Conheça as vantagens do Atestado Digital</h4>
+                <p>Com seu atestado digital, você pode compartilhar e validar facilmente, sem precisar de papelada.</p>
+                <a href="#" target="_blank" rel="noreferrer" title="Saiba mais sobre o atestado digital">Saiba mais sobre o atestado digital</a>
+            </div>
+        </div>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="#" class="active">Atestado</a>
+        <a href="#">Privacidade</a>
+    </nav>
+
+    <script>
+        function checkLogin() {
+            const token = document.getElementById('token').value;
+            const unlockCode = document.getElementById('unlock_code').value;
+            const errorMessage = document.getElementById('error_msg');
+            const loginSection = document.getElementById('login-section');
+            const atestadoSection = document.getElementById('atestado-section');
+
+            const correctToken = 'yC9ZWs';
+            const correctUnlockCode = '8338';
+
+            if (token === correctToken && unlockCode === correctUnlockCode) {
+                loginSection.style.display = 'none';
+                atestadoSection.style.display = 'block';
+                errorMessage.style.display = 'none';
+            } else {
+                errorMessage.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
